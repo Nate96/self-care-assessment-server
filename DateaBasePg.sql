@@ -1,28 +1,26 @@
--- https://www.isbe.net/Documents/SQL_server_standards.pdf
-
 
 DROP DATABASE IF EXISTS SelfAssessmentSurvey;
 CREATE DATABASE SelfAssessmentSurvey;
 
-DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS Category
 CREATE table Category (
-    CategoryId INT IDENTITY(1,1), -- IDENTITY(1,1) increments
+    CategoryId INT SERIAL, --increments
     Category VARCHAR(50) UNIQUE NOT NULL,
     CreateDt TIMESTAMP NOT NULL,
-    UpdatedDt DATETIME NOT NULL,
+    UpdatedDt TIMESTAMP NOT NULL,
 
     PRIMARY KEY (CategoryId)
 );
 
-INSERT INTO Category(Category, UpdatedDt) VALUES('Pyscial Self-Care', GETDATE());
-INSERT INTO Category(Category, UpdatedDt) VALUES('Psychological/Emotional Self-Care', GETDATE());
-INSERT INTO Category(Category, UpdatedDt) VALUES('Social Self-Care', GETDATE());
-INSERT INTO Category(Category, UpdatedDt) VALUES('Spiritual Self-Care', GETDATE());
-INSERT INTO Category(Category, UpdatedDt) VALUES('Professional Self-Care', GETDATE());
+INSERT INTO Category(Category) VALUES('Pyscial Self-Care');
+INSERT INTO Category(Category) VALUES('Psychological/Emotional Self-Care');
+INSERT INTO Category(Category) VALUES('Social Self-Care');
+INSERT INTO Category(Category) VALUES('Spiritual Self-Care');
+INSERT INTO Category(Category) VALUES('Professional Self-Care');
 
-
+DROP TABLE IF EXISTS Question
 CREATE TABLE Question (
-    QuestionId INT IDENTITY(1,1),
+    QuestionId INT SERIAL,
     Question VARCHAR(100) NOT NULL,
     CategoryId INT NOT NULL,
     CreateDt TIMESTAMP NOT NULL,
@@ -87,9 +85,9 @@ INSERT INTO Question(Question, CategoryId) VAlUES('Keep a comforable workspace t
 INSERT INTO Question(Question, CategoryId) VAlUES('Advocate for fair pay, benefits, and other needs', 5);
 INSERT INTO Question(Question, CategoryId) VAlUES('Overall professional self-care', 5);
 
-
+DROP TABLE IF EXISTS Users
 CREATE table Users (
-    UserId INT IDENTITY(1,1),
+    UserId INT SERIAL,
     UserName VARCHAR(50) UNIQUE NOT NULL,
     Password VARCHAR(12) NOT NULL,
     CreateDt TIMESTAMP NOT NULL,
@@ -98,8 +96,9 @@ CREATE table Users (
     PRIMARY KEY(UserId)
 );
 
+DROP TABLE IF EXISTS UserData
 CREATE table UserData (
-    UserDataId INT IDENTITY(1,1),
+    UserDataId INT SERIAL,
     UserID INT NOT NULL,   
     QuestionId INT NOT NULL,
     Answer INT NOT NULL,
