@@ -1,5 +1,11 @@
 -- https://www.isbe.net/Documents/SQL_server_standards.pdf
 
+
+/* 
+Intructions
+1. Run the following 2 statements first in another tab in master
+2. Connect to SelfAssesmentSurvey DB and run the rest of the file.
+*/
 -- DROP DATABASE IF EXISTS SelfAssessmentSurvey;
 -- CREATE DATABASE SelfAssessmentSurvey;
 
