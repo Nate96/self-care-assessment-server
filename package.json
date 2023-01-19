@@ -1,0 +1,26 @@
+{
+  "name": "self-care-assessment-server",
+  "version": "1.0.0",
+  "description": "self-care-assessment-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nate96/self-care-assessment-server.git"
+  },
+  "keywords": [
+    "self",
+    "care"
+  ],
+  "author": "Nate Braukhoff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nate96/self-care-assessment-server/issues"
+  },
+  "homepage": "https://github.com/Nate96/self-care-assessment-server#readme",
+  "dependencies": {
+    "mssql": "^9.1.1"
+  }
+}
