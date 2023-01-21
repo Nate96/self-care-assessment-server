@@ -1,19 +1,19 @@
 
 var sql = require("mssql")
 
-export async function GetCategories(config) {
+async function GetCategories(config) {
     try {
-        let pool = await sql.connect(config);
-        let products = await pool.request().query("SELECT * FROM Category")
+        let  pool = await  sql.connect(config);
+        let  products = await  pool.request().query("SELECT * FROM Category")
         return products.recordset
     }
     catch (error) {
         console.log(error);
     }
 }
+
   
-  
-export async function GetQuestions(config) {
+async function GetQuestions(config) {
     try {
         let  pool = await  sql.connect(config);
         let  products = await  pool.request().query("SELECT * FROM Question")
@@ -23,3 +23,5 @@ export async function GetQuestions(config) {
         console.log(error);
     }
 }
+
+module.exports = { GetCategories, GetQuestions }

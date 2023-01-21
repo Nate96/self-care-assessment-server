@@ -2,7 +2,7 @@ const repository = require('./repository')
 
 var config = {
 	user: 'sa',
-	password: 'MyPass@word',
+	password: 'Password5!',
 	server: 'localhost', 
 	database: 'SelfAssessmentSurvey',
 	options: {
@@ -12,7 +12,9 @@ var config = {
 };
 
 repository.GetCategories(config)
+    .then(categories => console.log(categories))
 repository.GetQuestions(config)
+    .then(questions => console.log(questions))
 
 
 
