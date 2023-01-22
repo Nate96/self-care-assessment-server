@@ -7,7 +7,7 @@
 create a file .env for database information
 
 # DB Installation
-1. install docker
+1. install (Docker)[https://www.docker.com/]
 2. run the following commands
     ```powershell
     docker pull mcr.microsoft.com/mssql/server 
