@@ -7,8 +7,8 @@
 create a file .env for database information
 
 # DB Installation
-1. install [Docker](https://www.docker.com/)
-2. run the following commands
+1. Install [Docker](https://www.docker.com/)
+2. Run the following commands
     ```powershell
     docker pull mcr.microsoft.com/mssql/server 
     docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password5!" \ 
