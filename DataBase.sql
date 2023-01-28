@@ -1,14 +1,10 @@
 -- https://www.isbe.net/Documents/SQL_server_standards.pdf
 
-
-/* 
-Intructions
-1. Run the following 2 statements first in another tab in master
-2. Connect to SelfAssesmentSurvey DB and run the rest of the file.
-*/
+/* Run Me First */
 -- DROP DATABASE IF EXISTS SelfAssessmentSurvey;
 -- CREATE DATABASE SelfAssessmentSurvey;
 
+/* Run me after changing connections to SelfAssessmentSurvey*/
 DROP TABLE IF EXISTS Category;
 CREATE table Category (
     CategoryId INT IDENTITY(1,1), -- IDENTITY(1,1) increments
@@ -25,7 +21,7 @@ INSERT INTO Category(Category, CreateDt, UpdatedDt) VALUES('Social Self-Care', G
 INSERT INTO Category(Category, CreateDt, UpdatedDt) VALUES('Spiritual Self-Care', GETDATE(), GETDATE());
 INSERT INTO Category(Category, CreateDt, UpdatedDt) VALUES('Professional Self-Care', GETDATE(), GETDATE());
 
-DROP TABLE IF EXISTS Question
+DROP TABLE IF EXISTS Question;
 CREATE TABLE Question (
     QuestionId INT IDENTITY(1,1),
     Question VARCHAR(100) NOT NULL,
@@ -103,23 +99,30 @@ CREATE table Users (
     PRIMARY KEY(UserId)
 );
 
+INSERT INTO Users(UserName, Password, CreateDt, UpdateDt) VALUES('squishy', '1234', GETDATE(), GETDATE());
+
+DROP TABLE IF EXISTS Form
+CREATE TABLE Form(
+    FormId INT IDENTITY(1,1),
+    UserId INT NOT NULL,
+    CreatedDt DATETIME NOT NULL,
+    UpdateDt DATETIME NOT NULL,
+
+    PRIMARY KEY(FormId)
+);
+
 DROP TABLE IF EXISTS UserData
 CREATE table UserData (
-    UserDataId INT IDENTITY(1,1),
-    UserID INT NOT NULL,   
+    UserId INT NOT NULL,   
     QuestionId INT NOT NULL,
+    FormId INT NOT NULL,
     Answer INT NOT NULL,
     Improve varchar(1) NOT NULL,
     CreateDt DATETIME NOT NULL,
     UpdatedDt DATETIME NOT NULL,
-
-    PRIMARY KEY(UserDataId),
-    FOREIGN KEY(UserID) REFERENCES users(UserID),
-    FOREIGN KEY(QuestionId) REFERENCES Question(QuestionId)
+    
+    PRIMARY KEY(QuestionId, UserId),
+    FOREIGN KEY(UserId) REFERENCES users(UserId),
+    FOREIGN KEY(QuestionId) REFERENCES Question(QuestionId),
+    FOREIGN KEY(FormId) REFERENCES Form(FormId)
 );
-
-
-
-
-
-
