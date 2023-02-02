@@ -4,9 +4,12 @@ const port = 5001
 const repository = require('./repository')
 const config = require('./config')
 
+app.use(express.json())
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
 
 app.get('/GetCategories', async (req, res) => {
     let categories = await repository.GetCategories(config.DbConfig)
@@ -21,19 +24,23 @@ app.get('/GetQuestions', async (req, res) => {
 
 // Forms
 app.get('/form/:userId', async (req, res) => {
-    // get forms
+    let forms = await repository.GetForms(config.DbConfig, req.params.userId)
+    res.send(forms)
 })
 
-app.post('/forms', async (req, res) => {
-    // create froms
+app.post('/form', async (req, res) => {
+    let formId = await repository.CreateForm(config.DbConfig)
+    res.send(formId)
 })
 
 
 // User Data
-app.get('/userData/form/:formId', async(req, res) => {
-    //get user data
+app.get('/userData/:userId', async(req, res) => {
+    let userData = await repository.GeteUserData(config.DbConfig, req.params.userId)
+    res.send(userData)
 })
 
-app.post('userData/:formIdf', async(req, res) => {
-    //create user data
+app.post('/userData', async(req, res) => {
+    let userData = await repository.CreateUserData(config.DbConfig, req.body)
+    res.send('adding user data for form ' + req.body.FormId)
 })
