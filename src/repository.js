@@ -1,10 +1,11 @@
-
+const config = require('./configs/db.config')
 var sql = require("mssql")
 
-async function GetCategories(config) {
+async function GetCategories() {
     try {
-        let  pool = await  sql.connect(config);
+        let  pool = await  sql.connect(config.DbConfig);
         let  categories = await  pool.request().query("SELECT * FROM Category")
+        
         return categories.recordset
     }
     catch (error) {
@@ -13,10 +14,11 @@ async function GetCategories(config) {
 }
 
   
-async function GetQuestions(config) {
+async function GetQuestions() {
     try {
-        let  pool = await  sql.connect(config);
+        let  pool = await  sql.connect(config.DbConfig);
         let  questions = await  pool.request().query("SELECT * FROM Question")
+        
         return questions.recordset
     }
     catch (error) {
@@ -24,14 +26,15 @@ async function GetQuestions(config) {
     }
 }
 
-async function CreateForm(config) {
+async function CreateForm() {
     try {
-        let pool = await  sql.connect(config);
+        let pool = await  sql.connect(config.DbConfig);
         let insertForm = await  pool.request()
             .input('UserId', sql.Int, 1)
             .query("INSERT INTO Form (UserId, CreatedDt, UpdateDt) VALUES(@UserId, GETDATE(), GETDATE())")
 
         let formId = await pool.request().query("SELECT TOP 1 formId FROM form ORDER BY FormId DESC")
+        
         return formId.recordset
     }
     catch (error) {
@@ -39,9 +42,9 @@ async function CreateForm(config) {
     }
 }
 
-async function GetForms(config, userId) {
+async function GetForms(userId) {
     try {
-        let pool = await  sql.connect(config);
+        let pool = await  sql.connect(config.DbConfig);
         let forms = await  pool.request()
             .input('UserId', sql.Int, userId)
             .query("SELECT * FROM Form WHERE UserId = @UserId")
@@ -53,9 +56,9 @@ async function GetForms(config, userId) {
     }
 }
 
-async function CreateUserData(config, userData) {
+async function CreateUserData(userData) {
     try {
-        let pool = await  sql.connect(config);
+        let pool = await  sql.connect(config.DbConfig);
         let data = await  pool.request()
             .input('UserId', sql.Int, userData.UserId)
             .input('QuestionId', sql.Int, userData.QuestionId)
@@ -69,9 +72,9 @@ async function CreateUserData(config, userData) {
     }
 }
 
-async function GeteUserData(config, userId) {
+async function GeteUserData(userId) {
     try {
-        let pool = await  sql.connect(config);
+        let pool = await  sql.connect(config.DbConfig);
         let userData = await  pool.request()
             .input('UserId', sql.Int, userId)
             .query("SELECT * FROM UserData WHERE UserId = @UserId")
