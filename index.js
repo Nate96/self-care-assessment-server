@@ -1,7 +1,12 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const port = 5001
 const repository = require('./src/repository')
+
+app.use(cors({
+    origin: 'http://localhost:5173'
+}))
 
 
 app.listen(port, () => {
