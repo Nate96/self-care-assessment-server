@@ -46,8 +46,6 @@ app.get('/userData/:userId', async(req, res) => {
 })
 
 app.post('/userData', async(req, res) => {
-    console.log(req.body)
-    res.send(req.body)
-    // let userData = await repository.CreateUserData(req.body)
-    // res.send(userData)
+    let userData = await repository.CreateUserData(req.body)
+    res.send(userData)
 })
