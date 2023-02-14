@@ -31,8 +31,8 @@ app.get('/form/:userId', async (req, res) => {
     res.send(forms)
 })
 
-app.post('/form', async (req, res) => {
-    let formId = await repository.CreateForm()
+app.post('/form/:userId', async (req, res) => {
+    let formId = await repository.CreateForm(req.params.userId)
     res.send(formId)
 })
 

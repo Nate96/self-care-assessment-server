@@ -26,14 +26,14 @@ async function GetQuestions() {
     }
 }
 
-async function CreateForm() {
+async function CreateForm(userId) {
     try {
         let pool = await  sql.connect(config.DbConfig);
         let insertForm = await  pool.request()
-            .input('UserId', sql.Int, 1)
+            .input('UserId', sql.Int, userId)
             .query("INSERT INTO Form (UserId, CreatedDt, UpdateDt) VALUES(@UserId, GETDATE(), GETDATE())")
 
-        let formId = await pool.request().query("SELECT TOP 1 formId FROM form ORDER BY FormId DESC")
+        let formId = await pool.request().query("SELECT TOP 1 * FROM form ORDER BY FormId DESC")
         
         return formId.recordset
     }
