@@ -33,7 +33,7 @@ async function CreateForm(userId) {
             .input('UserId', sql.Int, userId)
             .query("INSERT INTO Form (UserId, CreatedDt, UpdateDt) VALUES(@UserId, GETDATE(), GETDATE())")
 
-        let formId = await pool.request().query("SELECT TOP 1 * FROM form ORDER BY FormId DESC")
+        let formId = await pool.request().query("SELECT TOP 1 FormId FROM form ORDER BY FormId DESC")
         
         return formId.recordset
     }
