@@ -66,6 +66,8 @@ async function CreateUserData(userData) {
             .input('Answer', sql.Int, userData.Answer)
             .input('Improve', sql.Char, userData.Improve)
             .query("INSERT INTO UserData(UserId, QuestionId, FormId, Answer, Improve, CreateDt, UpdatedDt) VALUES(@UserId, @QuestionId, @FormId, @Answer, @Improve, GETDATE(), GETDATE())")
+        
+        return 'adding user data for form ' + userData.FormId
     }
     catch (error) {
         console.log(error);

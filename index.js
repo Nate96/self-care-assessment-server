@@ -3,11 +3,13 @@ const cors = require('cors')
 const app = express()
 const port = 5001
 const repository = require('./src/repository')
+const bodyParser = require('body-parser')
 
 app.use(cors({
     origin: 'http://localhost:5173'
 }))
 
+app.use(bodyParser.json())
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
@@ -44,6 +46,8 @@ app.get('/userData/:userId', async(req, res) => {
 })
 
 app.post('/userData', async(req, res) => {
-    let userData = await repository.CreateUserData(req.body)
-    res.send('adding user data for form ' + req.body.FormId)
+    console.log(req.body)
+    res.send(req.body)
+    // let userData = await repository.CreateUserData(req.body)
+    // res.send(userData)
 })
