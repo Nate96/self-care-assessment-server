@@ -113,6 +113,7 @@ CREATE TABLE Form(
 
 DROP TABLE IF EXISTS UserData
 CREATE table UserData (
+    UserDataId INT IDENTITY(1,1),
     UserId INT NOT NULL,   
     QuestionId INT NOT NULL,
     FormId INT NOT NULL,
@@ -121,8 +122,8 @@ CREATE table UserData (
     CreateDt DATETIME NOT NULL,
     UpdatedDt DATETIME NOT NULL,
     
-    PRIMARY KEY(QuestionId, UserId),
-    FOREIGN KEY(UserId) REFERENCES users(UserId),
-    FOREIGN KEY(QuestionId) REFERENCES Question(QuestionId),
-    FOREIGN KEY(FormId) REFERENCES Form(FormId)
+    PRIMARY KEY(UserDataId),
+    -- FOREIGN KEY(UserId) REFERENCES users(UserId),
+    -- FOREIGN KEY(QuestionId) REFERENCES Question(QuestionId),
+    -- FOREIGN KEY(FormId) REFERENCES Form(FormId)
 );
