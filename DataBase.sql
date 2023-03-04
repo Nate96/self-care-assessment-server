@@ -38,9 +38,9 @@ INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Take car
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Exercise', 1, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Wear cloths that help me feel good about myself', 1, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Eat regularly', 1, GETDATE(), GETDATE());
-INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Participate in fun activites (e.g. walking, swimming, dancing, sport', 1, GETDATE(), GETDATE());
+INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Participate in fun activites (e.g. walking, swimming, dancing, sport)', 1, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Get enough sleep', 1, GETDATE(), GETDATE());
-INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Go to preventative medical appointment (e.g. checkups, teeth cleanings', 1, GETDATE(), GETDATE());
+INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Go to preventative medical appointment (e.g. checkups, teeth cleanings)', 1, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Rest when sick', 1, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Overall physical self-care', 1, GETDATE(), GETDATE());
 
