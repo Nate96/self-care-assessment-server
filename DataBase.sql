@@ -118,7 +118,7 @@ CREATE table UserData (
     QuestionId INT NOT NULL,
     FormId INT NOT NULL,
     Answer INT NOT NULL,
-    Improve varchar(1) NOT NULL,
+    Improve BIT NOT NULL,
     CreateDt DATETIME NOT NULL,
     UpdatedDt DATETIME NOT NULL,
     

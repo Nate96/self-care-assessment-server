@@ -64,7 +64,7 @@ async function CreateUserData(userData) {
             .input('QuestionId', sql.Int, userData.QuestionId)
             .input('FormId', sql.Int, userData.FormId)
             .input('Answer', sql.Int, userData.Answer)
-            .input('Improve', sql.Char, userData.Improve)
+            .input('Improve', sql.Bit, userData.Improve)
             .query("INSERT INTO UserData(UserId, QuestionId, FormId, Answer, Improve, CreateDt, UpdatedDt) VALUES(@UserId, @QuestionId, @FormId, @Answer, @Improve, GETDATE(), GETDATE())")
         
         return 'adding user data for form ' + userData.FormId
