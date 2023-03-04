@@ -48,10 +48,10 @@ INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Take tim
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Participate in hobbies', 2, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Get away from distractions (e.g. phone, email)', 2, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Learn new things, unrelated to work or school', 2, GETDATE(), GETDATE());
-INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Exress my feelings in a healthy way (e.g. talking, creating art, journaling', 2, GETDATE(), GETDATE());
+INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Exress my feelings in a healthy way (e.g. talking, creating art, journaling)', 2, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Recognize my own strengths and achievements', 2, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Go on vacations or day trips', 2, GETDATE(), GETDATE());
-INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Do something comforting (e.ge rewatching a favorite movie, taking a long bath', 2, GETDATE(), GETDATE());
+INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Do something comforting (e.ge rewatching a favorite movie, taking a long bath)', 2, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Find reasons to laugh', 2, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Talk about my problems', 2, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Overall psychological and emotional self-care', 2, GETDATE(), GETDATE());
@@ -73,11 +73,11 @@ INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Pray', 4
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Recognize the things that give meaning to my life', 4, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Act in accordance with my morals and values', 4, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Set aside time for thought and reflection', 4, GETDATE(), GETDATE());
-INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Participate in a cuase tat is important to me', 4, GETDATE(), GETDATE());
-INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Appreciate art that is impactful to me (e.g. music, film, liteture', 4, GETDATE(), GETDATE());
+INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Participate in a cuase that is important to me', 4, GETDATE(), GETDATE());
+INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Appreciate art that is impactful to me (e.g. music, film, liteture)', 4, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Overall spiritual self-care', 4, GETDATE(), GETDATE());
 
-INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Improve my [rofessional skills', 5, GETDATE(), GETDATE());
+INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Improve my professional skills', 5, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Say "no" to excessive new responsibilities', 5, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Take on projects that are interesting or rewarding', 5, GETDATE(), GETDATE());
 INSERT INTO Question(Question, CategoryId, CreateDt, UpdatedDt) VAlUES('Learn new things related to my profession', 5, GETDATE(), GETDATE());
@@ -118,7 +118,7 @@ CREATE table UserData (
     QuestionId INT NOT NULL,
     FormId INT NOT NULL,
     Answer INT NOT NULL,
-    Improve varchar(1) NOT NULL,
+    Improve BIT NOT NULL,
     CreateDt DATETIME NOT NULL,
     UpdatedDt DATETIME NOT NULL,
     
