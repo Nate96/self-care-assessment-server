@@ -7,7 +7,7 @@ const repository = require('./src/repository')
 const bodyParser = require('body-parser')
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: process.env.CORS_ORIGIN
 }))
 
 app.use(bodyParser.json())
