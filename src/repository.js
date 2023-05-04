@@ -1,10 +1,14 @@
 const config = require('./configs/db.config')
 var sql = require("mssql")
 
+/**
+ * Gets all Questions from the database
+ * @returns batabase query in JSON
+ */
 async function GetCategories() {
     try {
         let  pool = await  sql.connect(config.DbConfig);
-        let  categories = await  pool.request().query("SELECT * FROM Category")
+        let  categories = await  pool.request().execute('getCategories')
         
         return categories.recordset
     }
@@ -13,11 +17,14 @@ async function GetCategories() {
     }
 }
 
-  
+/**
+ * Gets all Questions from the database
+ * @returns batabase query in JSON
+ */
 async function GetQuestions() {
     try {
         let  pool = await  sql.connect(config.DbConfig);
-        let  questions = await  pool.request().query("SELECT * FROM Question")
+        let  questions = await  pool.request().execute('getQuestions')
         
         return questions.recordset
     }
@@ -26,28 +33,36 @@ async function GetQuestions() {
     }
 }
 
+/**
+ * Adds a from to the batabase fro a given userId
+ * @param {number} userId 
+ * @returns a JSON object of the crated form
+ */
 async function CreateForm(userId) {
     try {
-        let pool = await  sql.connect(config.DbConfig);
+        let pool = await sql.connect(config.DbConfig);
         let insertForm = await  pool.request()
             .input('UserId', sql.Int, userId)
-            .query("INSERT INTO Form (UserId, CreatedDt, UpdateDt) VALUES(@UserId, GETDATE(), GETDATE())")
+            .execute('createForm')
 
-        let formId = await pool.request().query("SELECT TOP 1 FormId FROM form ORDER BY FormId DESC")
-        
-        return formId.recordset
+        return insertForm.recordset
     }
     catch (error) {
         console.log(error);
     }
 }
 
+/**
+ * Gets all Forms for a giving user
+ * @param {number} userId 
+ * @returns a JSON object of the form
+ */
 async function GetForms(userId) {
     try {
         let pool = await  sql.connect(config.DbConfig);
         let forms = await  pool.request()
             .input('UserId', sql.Int, userId)
-            .query("SELECT * FROM Form WHERE UserId = @UserId")
+            .execute('getForm')
 
         return forms.recordset
     }
@@ -56,6 +71,11 @@ async function GetForms(userId) {
     }
 }
 
+/**
+ * Save answers from a given user
+ * @param {*} userData 
+ * @returns a JSON object of the form
+ */
 async function CreateUserData(userData) {
     try {
         let pool = await  sql.connect(config.DbConfig);
@@ -65,22 +85,27 @@ async function CreateUserData(userData) {
             .input('FormId', sql.Int, userData.FormId)
             .input('Answer', sql.Int, userData.Answer)
             .input('Improve', sql.Bit, userData.Improve)
-            .query("INSERT INTO UserData(UserId, QuestionId, FormId, Answer, Improve, CreateDt, UpdatedDt) VALUES(@UserId, @QuestionId, @FormId, @Answer, @Improve, GETDATE(), GETDATE())")
-        
+            .execute('createUserData')
+             
         return 'adding user data for form ' + userData.FormId
     }
     catch (error) {
         console.log(error);
-    }
+    }   
 }
 
+/**
+ * Get user data for a given user
+ * @param {number} userId 
+ * @returns a JSON object of the form
+ */
 async function GeteUserData(userId) {
     try {
         let pool = await  sql.connect(config.DbConfig);
         let userData = await  pool.request()
             .input('UserId', sql.Int, userId)
-            .query("SELECT * FROM UserData WHERE UserId = @UserId")
-        
+            .execute('getUserData')
+
         return userData.recordset
     }
     catch (error) {
