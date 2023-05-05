@@ -112,4 +112,22 @@ async function GeteUserData(userId) {
         console.log(error);
     }
 }
-module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData }
+
+/**
+ * Gets answers for a given assessment
+ * @param {number} formId 
+ */
+async function GetAssessment(formId) {
+    try {
+        let pool = await  sql.connect(config.DbConfig);
+        let userData = await  pool.request()
+            .input('FormId', sql.Int, formId)
+            .execute('getAssessment')
+        
+        return userData.recordset
+    }
+    catch(error) {
+        console.log(error)
+    }
+}
+module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment }

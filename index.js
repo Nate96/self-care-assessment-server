@@ -48,6 +48,11 @@ app.get('/userData/:userId', async(req, res) => {
 
 app.post('/userData', async(req, res) => {
     let userData = await repository.CreateUserData(req.body)
-    console.log(userData)
     res.send(JSON.stringify(userData))
+})
+
+app.get('/Assessment/:formId', async(req, res) => {
+    let assessment = await repository.GetAssessment(req.params.formId)
+    console.log(assessment)
+    res.send(JSON.stringify(assessment))
 })
