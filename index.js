@@ -53,6 +53,10 @@ app.post('/userData', async(req, res) => {
 
 app.get('/Assessment/:formId', async(req, res) => {
     let assessment = await repository.GetAssessment(req.params.formId)
-    console.log(assessment)
     res.send(JSON.stringify(assessment))
+})
+
+app.get('/BasicAnalyse/:userId', async(req, res) => {
+    let basicAnalyse = await repository.GetBasicAnalyseCalculating(req.params.userId)
+    res.send(basicAnalyse)
 })

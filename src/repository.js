@@ -119,7 +119,7 @@ async function GeteUserData(userId) {
  */
 async function GetAssessment(formId) {
     try {
-        let pool = await  sql.connect(config.DbConfig);
+        let pool = await sql.connect(config.DbConfig);
         let userData = await  pool.request()
             .input('FormId', sql.Int, formId)
             .execute('getAssessment')
@@ -130,4 +130,53 @@ async function GetAssessment(formId) {
         console.log(error)
     }
 }
-module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment }
+
+/**
+ * Builds table with stats of the previous Assessments
+ * @param {number} userId 
+ * @returns {String, number, number}
+ */
+async function GetBasicAnalyseCalculating(userId) {
+    let totalStars = 0
+    let totalAnswers = 0
+    let table = []
+    let count = 0
+    
+    //get user data
+    let userData = await GeteUserData(userId)
+    console.log('user data:', userData)
+    
+    for (let i = 0; i < userData.length; i++) {
+        
+        totalAnswers += userData[i].Answer
+        
+        if(userData[i].Improve === true) {
+            totalStars += 1
+        }
+        count += 1
+
+        if(userData[i + 1] === undefined || userData[i].FormId !== userData[i + 1]?.FormId) {
+            let row = {
+                formId: userData[i].FormId,
+                createdDt: userData[i].createdDt,
+                averageRank: totalAnswers / count,
+                toalStars: totalStars,
+            }
+
+            table.push(row)
+
+            totalAnswers = 0
+            totalStars = 0
+            count = 0
+        }
+    }
+
+    console.log('Table:', table)
+    
+    return table
+}
+
+async function addBasicAnalyse(formId) {
+
+}
+module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment, GetBasicAnalyseCalculating }
