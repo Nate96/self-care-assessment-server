@@ -168,6 +168,9 @@ async function GetBasicAnalyseCalculating(userId) {
             totalAnswers = 0
             totalStars = 0
             count = 0
+
+            console.log('Form ID', userData[i].FormId)
+            createBasicAnalyse(userData[i].FormId)
         }
     }
 
@@ -176,7 +179,38 @@ async function GetBasicAnalyseCalculating(userId) {
     return table
 }
 
-async function addBasicAnalyse(formId) {
-
+/**
+ * creates a row in the BasicAnalyse Table
+ * @param {number} formId 
+ * @returns string
+ */
+async function createBasicAnalyse(formId) {
+    try {
+        let pool = await sql.connect(config.DbConfig)
+        let request = await pool.request()
+            .input('formId', sql.Int, formId)
+            .execute('addBasicCalculations')
+        
+        return 'added' + formId
+    }
+    catch(error) {
+        console.log(error)
+    }
 }
-module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment, GetBasicAnalyseCalculating }
+
+async function getBasicCalculation(userId) {
+    try {
+        let pool = await sql.connect(config.DbConfig)
+        let request = await pool.request()
+            .input('userId', sql.Int, userId)
+            .execute('getBasicCalculations')
+        
+        return request.recordset
+    }
+    catch(error) {
+        console.log(error)
+    }
+}
+
+
+module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment, GetBasicAnalyseCalculating, createBasicAnalyse, getBasicCalculation }

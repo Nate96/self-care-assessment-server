@@ -123,7 +123,18 @@ CREATE table UserData (
     UpdatedDt DATETIME NOT NULL,
     
     PRIMARY KEY(UserDataId),
-    -- FOREIGN KEY(UserId) REFERENCES users(UserId),
-    -- FOREIGN KEY(QuestionId) REFERENCES Question(QuestionId),
-    -- FOREIGN KEY(FormId) REFERENCES Form(FormId)
+    FOREIGN KEY(UserId) REFERENCES users(UserId),
+    FOREIGN KEY(QuestionId) REFERENCES Question(QuestionId),
+    FOREIGN KEY(FormId) REFERENCES Form(FormId)
 );
+
+DROP TABLE IF EXISTS BasicCalculations 
+CREATE TABLE BasicCalculations (
+    Id INT IDENTITY(1,1),
+    FormId INT,
+    TotalStars INT,
+    AverageRank FLOAT
+
+    PRIMARY KEY(Id)
+    FOREIGN KEY(FormId) REFERENCES Form(FormId)
+)
