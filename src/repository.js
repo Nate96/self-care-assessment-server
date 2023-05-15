@@ -132,54 +132,6 @@ async function GetAssessment(formId) {
 }
 
 /**
- * Builds table with stats of the previous Assessments
- * @param {number} userId 
- * @returns {String, number, number}
- */
-async function GetBasicAnalyseCalculating(userId) {
-    let totalStars = 0
-    let totalAnswers = 0
-    let table = []
-    let count = 0
-    
-    //get user data
-    let userData = await GeteUserData(userId)
-    console.log('user data:', userData)
-    
-    for (let i = 0; i < userData.length; i++) {
-        
-        totalAnswers += userData[i].Answer
-        
-        if(userData[i].Improve === true) {
-            totalStars += 1
-        }
-        count += 1
-
-        if(userData[i + 1] === undefined || userData[i].FormId !== userData[i + 1]?.FormId) {
-            let row = {
-                formId: userData[i].FormId,
-                createdDt: userData[i].createdDt,
-                averageRank: totalAnswers / count,
-                toalStars: totalStars,
-            }
-
-            table.push(row)
-
-            totalAnswers = 0
-            totalStars = 0
-            count = 0
-
-            console.log('Form ID', userData[i].FormId)
-            createBasicAnalyse(userData[i].FormId)
-        }
-    }
-
-    console.log('Table:', table)
-    
-    return table
-}
-
-/**
  * creates a row in the BasicAnalyse Table
  * @param {number} formId 
  * @returns string
@@ -198,6 +150,11 @@ async function createBasicAnalyse(formId) {
     }
 }
 
+/**
+ * Gets the form calculations for a give user
+ * @param {number} userId 
+ * @returns list
+ */
 async function getBasicCalculation(userId) {
     try {
         let pool = await sql.connect(config.DbConfig)
@@ -213,4 +170,4 @@ async function getBasicCalculation(userId) {
 }
 
 
-module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment, GetBasicAnalyseCalculating, createBasicAnalyse, getBasicCalculation }
+module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment, createBasicAnalyse, getBasicCalculation }
