@@ -56,12 +56,12 @@ app.get('/Assessment/:formId', async(req, res) => {
     res.send(JSON.stringify(assessment))
 })
 
-app.post('/BasicAnalyse/1/:formId', async(req, res)=> {
+app.post('/BasicAnalyse/:formId', async(req, res)=> {
     let basicAnalyse = await repository.createBasicAnalyse(req.params.formId)
     res.send(basicAnalyse)
 })
 
-app.get('/BasicAnalyse/1/:userId',async(req, res) => {
-    let calc = await repository.getBasicCalculation(req.params.userId)
+app.get('/BasicAnalyse/:userId',async(req, res) => {
+    let calc = await repository.getBasicAnayse(req.params.userId)
     res.send(JSON.stringify(calc))
 })

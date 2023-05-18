@@ -155,7 +155,7 @@ async function createBasicAnalyse(formId) {
  * @param {number} userId 
  * @returns list
  */
-async function getBasicCalculation(userId) {
+async function getBasicAnayse(userId) {
     try {
         let pool = await sql.connect(config.DbConfig)
         let request = await pool.request()
@@ -170,4 +170,4 @@ async function getBasicCalculation(userId) {
 }
 
 
-module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment, createBasicAnalyse, getBasicCalculation }
+module.exports = { GetCategories, GetQuestions, CreateForm, GetForms, CreateUserData, GeteUserData, GetAssessment, createBasicAnalyse, getBasicAnayse}
