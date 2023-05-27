@@ -58,7 +58,7 @@ app.get('/responses/:formId', async(req, res) => {
 
 app.post('/BasicAnalyse/:formId', async(req, res)=> {
     let basicAnalyse = await repository.createBasicAnalyse(req.params.formId)
-    res.send(basicAnalyse)
+    res.send(JSON.stringify(basicAnalyse))
 })
 
 app.get('/BasicAnalyse/:userId',async(req, res) => {
