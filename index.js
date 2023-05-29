@@ -48,6 +48,22 @@ app.get('/userData/:userId', async(req, res) => {
 
 app.post('/userData', async(req, res) => {
     let userData = await repository.CreateUserData(req.body)
-    console.log(userData)
     res.send(JSON.stringify(userData))
+})
+
+// Responses
+app.get('/responses/:formId', async(req, res) => {
+    let assessment = await repository.GetAssessment(req.params.formId)
+    res.send(JSON.stringify(assessment))
+})
+
+// Basic Anaylse
+app.post('/BasicAnalyse/:formId', async(req, res)=> {
+    let basicAnalyse = await repository.createBasicAnalyse(req.params.formId)
+    res.send(JSON.stringify(basicAnalyse))
+})
+
+app.get('/BasicAnalyse/:userId',async(req, res) => {
+    let calc = await repository.getBasicAnayse(req.params.userId)
+    res.send(JSON.stringify(calc))
 })
