@@ -51,11 +51,13 @@ app.post('/userData', async(req, res) => {
     res.send(JSON.stringify(userData))
 })
 
+// Responses
 app.get('/responses/:formId', async(req, res) => {
     let assessment = await repository.GetAssessment(req.params.formId)
     res.send(JSON.stringify(assessment))
 })
 
+// Basic Anaylse
 app.post('/BasicAnalyse/:formId', async(req, res)=> {
     let basicAnalyse = await repository.createBasicAnalyse(req.params.formId)
     res.send(JSON.stringify(basicAnalyse))
